@@ -7,32 +7,32 @@ const (
 )
 
 type Dataset struct {
-	Intents map[string]Intent
+	Intents map[string]Intent `json:"intents"`
 }
 
 type Utterance struct {
-	Text     string
-	Entity   *string
-	SlotName *string
+	Text     string  `json:"text"`
+	Entity   *string `json:"entity,omitempty"`
+	SlotName *string `json:"slot_name,omitempty"`
 }
 
 type Utterances struct {
-	Data []Utterance
+	Data []Utterance `json:"data"`
 }
 
 type Intent struct {
-	Utterances
-	Entities map[string]Entity
-	Language
+	Utterances Utterances        `json:"utterances"`
+	Entities   map[string]Entity `json:"entities"`
+	Language   Language          `json:"language"`
 }
 
 type Entity struct {
-	Data                    []EntityData
-	UseSynonyms             bool
-	AutomaticallyExtensible bool
+	Data                    []EntityData `json:"data"`
+	UseSynonyms             bool         `json:"use_synonyms"`
+	AutomaticallyExtensible bool         `json:"use_synonyms"`
 }
 
 type EntityData struct {
-	Value    string
-	Synonyms []string
+	Value    string   `json:"value"`
+	Synonyms []string `json:"synonyms"`
 }
