@@ -17,18 +17,18 @@ type Dataset struct {
 	Language Language          `json:"language"`
 }
 
-type Utterance struct {
+type UtteranceChunk struct {
 	Text     string  `json:"text"`
 	Entity   *string `json:"entity,omitempty"`
 	SlotName *string `json:"slot_name,omitempty"`
 }
 
-type Utterances struct {
-	Data []Utterance `json:"data"`
+type Utterance struct {
+	Data []UtteranceChunk `json:"data"`
 }
 
 type Intent struct {
-	Utterances Utterances `json:"utterances"`
+	Utterances []Utterance `json:"utterances"`
 }
 
 type Entity struct {
@@ -40,4 +40,12 @@ type Entity struct {
 type EntityData struct {
 	Value    string   `json:"value"`
 	Synonyms []string `json:"synonyms"`
+}
+
+func (i *Intent) AddUtterance(val Utterance) {
+	i.Utterances = append(i.Utterances, val)
+}
+
+func (u *Utterance) AddChunk(val UtteranceChunk) {
+	u.Data = append(u.Data, val)
 }
