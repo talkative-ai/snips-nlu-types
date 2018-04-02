@@ -12,7 +12,9 @@ const (
 )
 
 type Dataset struct {
-	Intents map[string]Intent `json:"intents"`
+	Intents  map[string]Intent `json:"intents"`
+	Entities map[string]Entity `json:"entities"`
+	Language Language          `json:"language"`
 }
 
 type Utterance struct {
@@ -26,9 +28,7 @@ type Utterances struct {
 }
 
 type Intent struct {
-	Utterances Utterances        `json:"utterances"`
-	Entities   map[string]Entity `json:"entities"`
-	Language   Language          `json:"language"`
+	Utterances Utterances `json:"utterances"`
 }
 
 type Entity struct {
