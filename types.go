@@ -3,7 +3,12 @@ package snips
 type Language string
 
 const (
-	LanguageEnglish Language = "en"
+	LanguageEnglish  Language = "en"
+	LanguageGerman   Language = "de"
+	LanguageSpanish  Language = "es"
+	LanguageFrench   Language = "fr"
+	LanguageJapanese Language = "ja"
+	LanguageKorean   Language = "ko"
 )
 
 type Dataset struct {
