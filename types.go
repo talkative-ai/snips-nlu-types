@@ -49,3 +49,13 @@ func (i *Intent) AddUtterance(val Utterance) {
 func (u *Utterance) AddChunk(val UtteranceChunk) {
 	u.Data = append(u.Data, val)
 }
+
+type Result struct {
+	Input  string       `json:"input"`
+	Intent ResultIntent `json:"intent"`
+}
+
+type ResultIntent struct {
+	Name        string `json:"intentName"`
+	Probability float32
+}
