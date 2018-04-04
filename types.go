@@ -58,4 +58,24 @@ type Result struct {
 type ResultIntent struct {
 	Name        string `json:"intentName"`
 	Probability float32
+	Slots       []Slot `json:"slots"`
+}
+
+type Slot struct {
+	Range struct {
+		Start int `json:"start"`
+		End   int `json:"end"`
+	} `json:"range"`
+	RawValue string                 `json:"rawValue"`
+	Value    map[string]interface{} `json:"value"`
+	Entity   string                 `json:"entity"`
+	Name     string                 `json:"slotName"`
+}
+
+func (r *ResultIntent) SlotsMappedByName() map[string]*Slot {
+	result := map[string]*Slot{}
+	for _, slot := range r.Slots {
+		result[slot.Name] = &slot
+	}
+	return result
 }
