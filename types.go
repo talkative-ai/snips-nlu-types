@@ -34,7 +34,7 @@ type Intent struct {
 type Entity struct {
 	Data                    []EntityData `json:"data"`
 	UseSynonyms             bool         `json:"use_synonyms"`
-	AutomaticallyExtensible bool         `json:"use_synonyms"`
+	AutomaticallyExtensible bool         `json:"automatically_extensible"`
 }
 
 type EntityData struct {
@@ -53,12 +53,12 @@ func (u *Utterance) AddChunk(val UtteranceChunk) {
 type Result struct {
 	Input  string       `json:"input"`
 	Intent ResultIntent `json:"intent"`
+	Slots  []Slot       `json:"slots"`
 }
 
 type ResultIntent struct {
-	Name        string `json:"intentName"`
-	Probability float32
-	Slots       []Slot `json:"slots"`
+	Name        string  `json:"intentName"`
+	Probability float32 `json:"probability"`
 }
 
 type Slot struct {
@@ -72,7 +72,7 @@ type Slot struct {
 	Name     string                 `json:"slotName"`
 }
 
-func (r *ResultIntent) SlotsMappedByName() map[string]*Slot {
+func (r *Result) SlotsMappedByName() map[string]*Slot {
 	result := map[string]*Slot{}
 	for _, slot := range r.Slots {
 		result[slot.Name] = &slot
